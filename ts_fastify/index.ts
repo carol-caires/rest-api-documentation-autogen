@@ -1,23 +1,19 @@
 import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify'
-import { Server, IncomingMessage, ServerResponse } from 'http'
 
+const app: FastifyInstance = Fastify({})
 
-const server: FastifyInstance = Fastify({})
-
-server.get('/ping', {}, async (request, reply) => {
-  return { pong: 'it worked!' }
-})
+require('./endpoints')(app)
 
 const start = async () => {
   try {
-    await server.listen(3000)
+    await app.listen(3000)
 
-    const address = server.server.address()
+    const address = app.server.address()
     const port = typeof address === 'string' ? address : address?.port
-    console.log('running...')
+    console.log('running on port 3000...')
 
   } catch (err) {
-    server.log.error(err)
+    app.log.error(err)
     process.exit(1)
   }
 }
