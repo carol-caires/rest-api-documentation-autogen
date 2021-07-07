@@ -1,8 +1,10 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify'
+import fastify from 'fastify'
+import http from 'http'
+import endpoints from './endpoints'
 
-const app: FastifyInstance = Fastify({})
+const app= fastify<http.Server>()
 
-require('./endpoints')(app)
+app.register(endpoints)
 
 const start = async () => {
   try {

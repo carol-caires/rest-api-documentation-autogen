@@ -40,20 +40,6 @@
     "application/json"
   ],
   "paths": {
-    "/ping": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
     "/user": {
       "post": {
         "tags": [],
@@ -68,6 +54,26 @@
             "name": "city",
             "in": "query",
             "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ping": {
+      "get": {
+        "tags": [
+          "Ping"
+        ],
+        "description": "Makes a ping request",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Your name",
+            "type": "string",
+            "in": "query"
           }
         ],
         "responses": {}
